@@ -51,7 +51,7 @@ function App(props) {
         </div>
         <div className="awayButtons">
           <button onClick ={() => awayTouchdown(awayScore + 1)} className="awayButtons__touchdown">Away Touchdown</button>
-          <button onClick ={() => awayFieldGoal(homeScore + 1)}  className="awayButtons__fieldGoal">Away Field Goal</button>
+          <button onClick ={() => awayFieldGoal(awayScore + 1)}  className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
       </section>
     </div>
