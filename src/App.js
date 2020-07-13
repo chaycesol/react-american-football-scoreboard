@@ -5,8 +5,25 @@ import "./App.css";
 
 function App(props) {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
-  const [homeScore] = useState(50) // initialized scores at zero
-  const [awayScore] = useState (20) 
+  
+  //initialize scores
+  const [homeScore, setHomeScore] = useState(20) // initialized scores at zero
+  const [awayScore, setAwayScore] = useState (10) 
+  
+  // add functionality for touchdown buttons
+  const homeTouchdown = event => {
+    setHomeScore(homeScore + 7)
+  }
+  const awayTouchdown = event => {
+    setAwayScore(awayScore + 7)
+  }
+  // add functionality for field goal buttons
+  const homeFieldGoal= event => {
+    setHomeScore(homeScore + 3)
+  }
+  const awayFieldGoal = event => {
+    setAwayScore(awayScore + 3)
+  }
   return (
     <div className="container">
       <section className="scoreboard">
@@ -29,12 +46,12 @@ function App(props) {
         <div className="homeButtons">
 
           {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button onClick ={() => props.scoreChanger(homeScore + 1)} className="homeButtons__touchdown">Home Touchdown</button>
-          <button className="homeButtons__fieldGoal">Home Field Goal</button>
+          <button onClick ={() => homeTouchdown(homeScore + 1)} className="homeButtons__touchdown">Home Touchdown</button>
+          <button onClick ={() => homeFieldGoal(homeScore + 1)}  className="homeButtons__fieldGoal">Home Field Goal</button>
         </div>
         <div className="awayButtons">
-          <button className="awayButtons__touchdown">Away Touchdown</button>
-          <button className="awayButtons__fieldGoal">Away Field Goal</button>
+          <button onClick ={() => awayTouchdown(awayScore + 1)} className="awayButtons__touchdown">Away Touchdown</button>
+          <button onClick ={() => awayFieldGoal(homeScore + 1)}  className="awayButtons__fieldGoal">Away Field Goal</button>
         </div>
       </section>
     </div>
