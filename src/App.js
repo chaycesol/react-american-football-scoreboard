@@ -1,28 +1,25 @@
 //TODO: STEP 1 - Import the useState hook.
 import React, { useState } from "react";
 import BottomRow from "./BottomRow";
+import ButtonRow from "./ButtonRow";
 import "./App.css";
 
 function App(props) {
   //TODO: STEP 2 - Establish your applictaion's state with some useState hooks.  You'll need one for the home score and another for the away score.
   
   //initialize scores
-  const [homeScore, setHomeScore] = useState(20) // initialized scores at zero
+  const [homeScore, setHomeScore] = useState(21) // initialized scores at zero
   const [awayScore, setAwayScore] = useState (10) 
   
   // add functionality for touchdown buttons
-  const homeTouchdown = event => {
-    setHomeScore(homeScore + 7)
-  }
-  const awayTouchdown = event => {
-    setAwayScore(awayScore + 7)
-  }
-  // add functionality for field goal buttons
-  const homeFieldGoal= event => {
-    setHomeScore(homeScore + 3)
-  }
-  const awayFieldGoal = event => {
-    setAwayScore(awayScore + 3)
+
+
+  function keepScore(team, score){
+    if(team === 'Home Team'){
+      setHomeScore(homeScore + score)
+    } else if(team === 'Away Team') {
+      setAwayScore(awayScore + score)
+    }
   }
   return (
     <div className="container">
@@ -42,18 +39,7 @@ function App(props) {
         </div>
         <BottomRow />
       </section>
-      <section className="buttons">
-        <div className="homeButtons">
-
-          {/* TODO STEP 4 - Now we need to attach our state setter functions to click listeners. */}
-          <button onClick ={() => homeTouchdown(homeScore + 1)} className="homeButtons__touchdown">Home Touchdown</button>
-          <button onClick ={() => homeFieldGoal(homeScore + 1)}  className="homeButtons__fieldGoal">Home Field Goal</button>
-        </div>
-        <div className="awayButtons">
-          <button onClick ={() => awayTouchdown(awayScore + 1)} className="awayButtons__touchdown">Away Touchdown</button>
-          <button onClick ={() => awayFieldGoal(awayScore + 1)}  className="awayButtons__fieldGoal">Away Field Goal</button>
-        </div>
-      </section>
+      <ButtonRow keepScore={keepScore} />
     </div>
   );
 }
